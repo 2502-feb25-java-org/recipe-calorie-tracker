@@ -29,6 +29,12 @@ public class Recipe {
 	
 	public Recipe() { }
 
+	public Recipe(String recipeName, int caloriesPerServing) {
+		super();
+		this.recipeName = recipeName;
+		this.caloriesPerServing = caloriesPerServing;
+	}
+
 	public Recipe(int id, String recipeName, int caloriesPerServing) {
 		super();
 		this.id = id;
