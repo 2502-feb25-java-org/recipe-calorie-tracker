@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Entity
-@Table(name="USER")
+@Table(name="APP_USER")
 public class User {
 	
 	@Id
