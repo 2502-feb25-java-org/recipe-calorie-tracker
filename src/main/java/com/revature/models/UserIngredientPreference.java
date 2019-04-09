@@ -26,26 +26,26 @@ public class UserIngredientPreference {
 	
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinColumn(name="INGREDIENT_ID", nullable=false)
-	private int ingredientId;
+	private Ingredient ingredient;
 	
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinColumn(name="USER_ID", nullable=false)
-	private int userId;
+	private User user;
 	
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinColumn(name="STATUS_ID", nullable=false)
-	private int statusId;
+	private Status status;
 	
 	public UserIngredientPreference() { }
-	
-	public UserIngredientPreference(int id, int ingredientId, int userId, int statusId) {
+
+	public UserIngredientPreference(int id, Ingredient ingredient, User user, Status status) {
 		super();
 		this.id = id;
-		this.ingredientId = ingredientId;
-		this.userId = userId;
-		this.statusId = statusId;
+		this.ingredient = ingredient;
+		this.user = user;
+		this.status = status;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -54,33 +54,33 @@ public class UserIngredientPreference {
 		this.id = id;
 	}
 
-	public int getIngredientId() {
-		return ingredientId;
+	public Ingredient getIngredient() {
+		return ingredient;
 	}
 
-	public void setIngredientId(int ingredientId) {
-		this.ingredientId = ingredientId;
+	public void setIngredient(Ingredient ingredient) {
+		this.ingredient = ingredient;
 	}
 
-	public int getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public int getStatusId() {
-		return statusId;
+	public Status getStatus() {
+		return status;
 	}
 
-	public void setStatusId(int statusId) {
-		this.statusId = statusId;
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 
 	@Override
 	public String toString() {
-		return "UserIngredientPreference [id=" + id + ", ingredientId=" + ingredientId + ", userId=" + userId
-				+ ", statusId=" + statusId + "]";
+		return "UserIngredientPreference [id=" + id + ", ingredient=" + ingredient + ", user=" + user + ", status="
+				+ status + "]";
 	}
 }
