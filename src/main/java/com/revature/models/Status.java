@@ -32,6 +32,11 @@ public class Status {
 		this.statusName = statusName;
 	}
 
+	public Status(String statusName) {
+		super();
+		this.statusName = statusName;
+	}
+
 	public int getId() {
 		return id;
 	}

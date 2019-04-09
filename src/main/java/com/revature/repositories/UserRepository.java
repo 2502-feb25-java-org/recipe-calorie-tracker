@@ -1,6 +1,12 @@
 package com.revature.repositories;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.revature.models.User;
+
 @Repository
-public class UserRepository {
+public interface UserRepository extends JpaRepository<User, Integer>{
+
 
 }

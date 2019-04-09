@@ -38,6 +38,13 @@ public class UserIngredientPreference {
 	
 	public UserIngredientPreference() { }
 	
+	public UserIngredientPreference(int ingredientId, int userId, int statusId) {
+		super();
+		this.ingredientId = ingredientId;
+		this.userId = userId;
+		this.statusId = statusId;
+	}
+
 	public UserIngredientPreference(int id, int ingredientId, int userId, int statusId) {
 		super();
 		this.id = id;

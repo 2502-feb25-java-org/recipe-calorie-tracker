@@ -26,6 +26,11 @@ public class Ingredient {
 	
 	public Ingredient() { }
 
+	public Ingredient(String ingredientName) {
+		super();
+		this.ingredientName = ingredientName;
+	}
+
 	public Ingredient(int id, String ingredientName) {
 		super();
 		this.id = id;
