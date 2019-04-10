@@ -33,18 +33,31 @@ public class User {
 	@Column(name="PASSWORD")
 	private String password;
 	
+	@Column(name="AGE")
+	private int age;
+	
+	@Column(name="WEIGHT")
+	private int weight;
+	
+	@Column(name="HEIGHT")
+	private String height;
+	
 	@Column(name="MAX_CALORIE_INTAKE")
 	private int maxCalorieIntake;
 	
 	public User() { }
 
-	public User(int id, String firstName, String lastName, String username, String password, int maxCalorieIntake) {
+	public User(int id, String firstName, String lastName, String username, String password, int age, int weight,
+			String height, int maxCalorieIntake) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
 		this.password = password;
+		this.age = age;
+		this.weight = weight;
+		this.height = height;
 		this.maxCalorieIntake = maxCalorieIntake;
 	}
 
@@ -88,6 +101,30 @@ public class User {
 		this.password = password;
 	}
 
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public int getWeight() {
+		return weight;
+	}
+
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}
+
+	public String getHeight() {
+		return height;
+	}
+
+	public void setHeight(String height) {
+		this.height = height;
+	}
+
 	public int getMaxCalorieIntake() {
 		return maxCalorieIntake;
 	}
@@ -99,6 +136,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
-				+ ", password=" + password + ", maxCalorieIntake=" + maxCalorieIntake + "]";
+				+ ", password=" + password + ", age=" + age + ", weight=" + weight + ", height=" + height
+				+ ", maxCalorieIntake=" + maxCalorieIntake + "]";
 	}
 }
