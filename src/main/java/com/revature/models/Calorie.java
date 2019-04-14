@@ -26,6 +26,11 @@ public class Calorie {
 		this.ndbno = ndbno;
 		this.calories = calories;
 	}
+	public Calorie(String name, String ndbno) {
+		super();
+		this.name = name;
+		this.ndbno = ndbno;
+	}
 	public String getNdbno() {
 		return ndbno;
 	}
@@ -57,6 +62,10 @@ public class Calorie {
 	}
 	public void setCalories(double calories) {
 		this.calories = calories;
+	}
+	@Override
+	public String toString() {
+		return "Calorie [id=" + id + ", name=" + name + ", ndbno=" + ndbno + ", calories=" + calories + "]";
 	}
 	
 
