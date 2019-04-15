@@ -55,6 +55,12 @@ public class User {
 		this.password = password;
 		this.maxCalorieIntake = maxCalorieIntake;
 	}
+	
+
+	public User(int id) {
+		super();
+		this.id = id;
+	}
 
 	public User(int id, String firstName, String lastName, String username, String password, int age, int weight,
 			String height, int maxCalorieIntake) {
