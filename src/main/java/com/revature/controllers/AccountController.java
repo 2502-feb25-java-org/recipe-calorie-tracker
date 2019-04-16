@@ -71,6 +71,7 @@ public class AccountController {
 		//ResponseEntity<List<Calorie>>
 	System.out.println("HERE");
 	ObjectMapper objectMapper = new ObjectMapper();//                                                                  RETURN NUMBER
+    
 	URL searchUrl= new URL("https://api.nal.usda.gov/ndb/search/?format=json&q="+ URLEncoder.encode(ingredient.getIngredientName(), "UTF-8") +"&sort=r&max=10&ds=Standard%20Reference&offset=0&api_key=DEMO_KEY");
 
 	System.out.println(searchUrl);
