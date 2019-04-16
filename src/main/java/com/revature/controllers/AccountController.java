@@ -82,11 +82,11 @@ public class AccountController {
 	
 	
 	@RequestMapping(value="/1", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> getCals(@RequestBody Ingredient item) throws JsonParseException, JsonMappingException, IOException {
+	public ResponseEntity<Object> getCals(@RequestBody Ingredient ingredient) throws JsonParseException, JsonMappingException, IOException {
 		//ResponseEntity<List<Calorie>>
 	System.out.println("HERE");
 	ObjectMapper objectMapper = new ObjectMapper();//                                                                  RETURN NUMBER
-	URL searchUrl= new URL("https://api.nal.usda.gov/ndb/search/?format=json&q="+ item.getIngredientName()+"&sort=r&max=10&ds=Standard%20Reference&offset=0&api_key=DEMO_KEY");
+	URL searchUrl= new URL("https://api.nal.usda.gov/ndb/search/?format=json&q="+ ingredient.getIngredientName()+"&sort=r&max=10&ds=Standard%20Reference&offset=0&api_key=DEMO_KEY");
 	System.out.println(searchUrl);
 	Object object = objectMapper.readValue(searchUrl, Object.class);
 	String temp1 = objectMapper.writeValueAsString(object);
