@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -12,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,8 +23,11 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.Calorie;
 import com.revature.models.Ingredient;
+import com.revature.models.MealHistory;
+import com.revature.models.User;
 import com.revature.service.CalorieService;
 import com.revature.service.IngredientService;
+import com.revature.service.MealService;
 
 @RestController
 @RequestMapping("/account")
@@ -36,6 +39,9 @@ public class AccountController {
 	
 	@Autowired
 	CalorieService cService;
+	
+	@Autowired
+	MealService mService;
 	
 	//return all ingredients
 	@RequestMapping(value="/ingredients", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
@@ -49,21 +55,31 @@ public class AccountController {
 //	}
 	//returns general object, have an algorithm for parsing and will apply asap
 	
+	@RequestMapping(value="/3", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<MealHistory>> getHistory(@RequestBody User user){
+	
+		System.out.println(user);
+		
+		return new ResponseEntity<List<MealHistory>>(mService.getAllByUser(user.getId()), HttpStatus.OK);
+	}
+	
 	
 	
 	//received query terms, send back list of meals with info
 	@RequestMapping(value="/2", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Calorie>> getMeals(@RequestBody Ingredient item) throws JsonParseException, JsonMappingException, IOException{
-		ObjectMapper objectMapper = new ObjectMapper();
-		URL url = new URL("https://api.nal.usda.gov/ndb/V2/reports?ndbno="+ item.getNdbno() +"&type=f&format=json&api_key=DEMO_KEY");
+	public ResponseEntity<MealHistory> addMeals(@RequestBody MealHistory meal){
+		System.out.println("HERE");
+		System.out.println(meal);
+		if(meal.getDate()==null) {
+			Date tempdate= new Date();
+			meal.setDate(tempdate);
+		}
+		//meal = mService.addMeal(meal);
+		return new ResponseEntity<MealHistory>(mService.addMeal(meal), HttpStatus.OK);
 		
-		
-		
-		return null;
 		
 	}
 	
-
 	
 	
 	@RequestMapping(value="/1", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
@@ -71,9 +87,7 @@ public class AccountController {
 		//ResponseEntity<List<Calorie>>
 	System.out.println("HERE");
 	ObjectMapper objectMapper = new ObjectMapper();//                                                                  RETURN NUMBER
-    
-	URL searchUrl= new URL("https://api.nal.usda.gov/ndb/search/?format=json&q="+ URLEncoder.encode(ingredient.getIngredientName(), "UTF-8") +"&sort=r&max=10&ds=Standard%20Reference&offset=0&api_key=DEMO_KEY");
-
+	URL searchUrl= new URL("https://api.nal.usda.gov/ndb/search/?format=json&q="+ URLEncoder.encode(ingredient.getIngredientName(), "UTF-8")+"&sort=r&max=10&ds=Standard%20Reference&offset=0&api_key=DEMO_KEY");
 	System.out.println(searchUrl);
 	Object object = objectMapper.readValue(searchUrl, Object.class);
 	String temp1 = objectMapper.writeValueAsString(object);
