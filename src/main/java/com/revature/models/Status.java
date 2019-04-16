@@ -17,8 +17,8 @@ public class Status {
 
 	@Id
 	@Column(name="STATUS_ID")
-	@GeneratedValue(generator="STATUS_SEQ_GEN", strategy=GenerationType.SEQUENCE)
-	@SequenceGenerator(name="STATUS_SEQ_GEN", sequenceName="STATUS_SEQ", allocationSize=1)
+	@GeneratedValue(generator="STAT_SEQ_GEN", strategy=GenerationType.SEQUENCE)
+	@SequenceGenerator(name="STAT_SEQ_GEN", sequenceName="STAT_SEQ", allocationSize=1)
 	private int id;
 	
 	@Column(name="STATUS_NAME", nullable=false)
