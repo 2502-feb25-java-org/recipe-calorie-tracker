@@ -1,6 +1,7 @@
 package com.revature.controllers;
 import java.io.IOException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -86,7 +87,7 @@ public class AccountController {
 		//ResponseEntity<List<Calorie>>
 	System.out.println("HERE");
 	ObjectMapper objectMapper = new ObjectMapper();//                                                                  RETURN NUMBER
-	URL searchUrl= new URL("https://api.nal.usda.gov/ndb/search/?format=json&q="+ ingredient.getIngredientName()+"&sort=r&max=10&ds=Standard%20Reference&offset=0&api_key=DEMO_KEY");
+	URL searchUrl= new URL("https://api.nal.usda.gov/ndb/search/?format=json&q="+ URLEncoder.encode(ingredient.getIngredientName(), "UTF-8")+"&sort=r&max=10&ds=Standard%20Reference&offset=0&api_key=DEMO_KEY");
 	System.out.println(searchUrl);
 	Object object = objectMapper.readValue(searchUrl, Object.class);
 	String temp1 = objectMapper.writeValueAsString(object);
