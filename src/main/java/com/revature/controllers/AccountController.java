@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -55,17 +56,17 @@ public class AccountController {
 //	}
 	//returns general object, have an algorithm for parsing and will apply asap
 	
-	@RequestMapping(value="/3", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<MealHistory>> getHistory(@RequestBody User user){
+	@RequestMapping(value="/history/{uid}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<MealHistory>> getHistory(@PathVariable int uid){
 	
-		System.out.println(user);
+		System.out.println(uid);
 		
-		return new ResponseEntity<List<MealHistory>>(mService.getAllByUser(user.getId()), HttpStatus.OK);
+		return new ResponseEntity<List<MealHistory>>(mService.getAllByUser(uid), HttpStatus.OK);
 	}
 	
 	
 	
-	//received query terms, send back list of meals with info
+	//
 	@RequestMapping(value="/2", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<MealHistory> addMeals(@RequestBody MealHistory meal){
 		System.out.println("HERE");
@@ -82,12 +83,12 @@ public class AccountController {
 	
 	
 	
-	@RequestMapping(value="/1", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> getCals(@RequestBody Ingredient ingredient) throws JsonParseException, JsonMappingException, IOException {
+	@RequestMapping(value="/food/{ingredientName}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> getCals(@PathVariable String ingredientName) throws JsonParseException, JsonMappingException, IOException {
 		//ResponseEntity<List<Calorie>>
-	System.out.println("HERE");
-	ObjectMapper objectMapper = new ObjectMapper();//                                                                  RETURN NUMBER
-	URL searchUrl= new URL("https://api.nal.usda.gov/ndb/search/?format=json&q="+ URLEncoder.encode(ingredient.getIngredientName(), "UTF-8")+"&sort=r&max=10&ds=Standard%20Reference&offset=0&api_key=DEMO_KEY");
+	System.out.println(ingredientName);
+	ObjectMapper objectMapper = new ObjectMapper();
+	URL searchUrl= new URL("https://api.nal.usda.gov/ndb/search/?format=json&q="+ URLEncoder.encode(ingredientName, "UTF-8") +"&sort=r&max=10&ds=Standard%20Reference&offset=0&api_key=DEMO_KEY");
 	System.out.println(searchUrl);
 	Object object = objectMapper.readValue(searchUrl, Object.class);
 	String temp1 = objectMapper.writeValueAsString(object);

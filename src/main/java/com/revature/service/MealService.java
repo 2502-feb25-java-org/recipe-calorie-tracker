@@ -20,7 +20,7 @@ public class MealService {
 		return mRepo.save(meal);
 	}
 	public List<MealHistory> getAllByUser(int uid){
-		return mRepo.findByUid(uid);
+		return mRepo.findByUidOrderByDate(uid);
 	}
 
 }
