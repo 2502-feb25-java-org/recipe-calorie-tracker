@@ -11,5 +11,5 @@ import com.revature.models.MealHistory;
 public interface MealRepository extends JpaRepository<MealHistory, Integer>{
 
 	//return all meals with userid maybe sort by date
-	List<MealHistory> findByUid(int uid);
+	List<MealHistory> findByUidOrderByDate(int uid);
 }
