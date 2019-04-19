@@ -8,7 +8,6 @@ import com.revature.models.User;
 import com.revature.repositories.UserRepository;
 
 @Service
-@Transactional
 public class UserService {
 
 	@Autowired
