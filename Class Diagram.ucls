@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.2.2" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+<class-diagram version="1.2.3" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="com.revature.models.Ingredient" project="recipe-calorie-tracker" 
     file="/recipe-calorie-tracker/src/main/java/com/revature/models/Ingredient.java" binary="false" 
@@ -38,17 +38,7 @@
       <operations public="false" package="false" protected="false" private="false" static="false"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="com.revature.models.UserIngredientPreference" project="recipe-calorie-tracker" 
-    file="/recipe-calorie-tracker/src/main/java/com/revature/models/UserIngredientPreference.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="101" width="196" x="91" y="179"/>    
-    <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="false" package="false" protected="false" private="false" static="false"/>    
-    </display>  
-  </class>  
-  <class id="6" language="java" name="com.revature.models.UserRecipeHistory" project="recipe-calorie-tracker" 
+  <class id="5" language="java" name="com.revature.models.UserRecipeHistory" project="recipe-calorie-tracker" 
     file="/recipe-calorie-tracker/src/main/java/com/revature/models/UserRecipeHistory.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="75" width="150" x="451" y="170"/>    
